@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Note Keeper</string>
+    <string name="fab_content_description">increase text value</string>
 </resources>
