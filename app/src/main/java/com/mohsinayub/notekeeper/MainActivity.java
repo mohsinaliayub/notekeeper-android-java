@@ -1,9 +1,11 @@
 package com.mohsinayub.notekeeper;
 
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -14,26 +16,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            TextView textView = findViewById(R.id.text_value);
-            String stringValue = textView.getText().toString();
-            int originalValue = Integer.parseInt(stringValue);
-            int newValue = MyWorker.doubleTheValue(originalValue);
-            stringValue = Integer.toString(newValue);
-            textView.setText(stringValue);
-
-            final String message = "Changed value " + originalValue + " to " + newValue;
+            final String message = "SET YOUR ACTION HERE";
             Snackbar.make(view, message, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null)
                     .show();
         });
     }
-}
 
-class MyWorker {
-    public static int doubleTheValue(int value) {
-        return value * 2;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
