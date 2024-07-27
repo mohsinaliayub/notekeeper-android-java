@@ -18,13 +18,6 @@ public class NoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            final String message = "SET YOUR ACTION HERE";
-            Snackbar.make(view, message, Snackbar.LENGTH_LONG)
-                    .show();
-        });
     }
 
     @Override
