@@ -28,9 +28,7 @@ public class NoteListActivity extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.fab)
-                .setAction("Action", null).show();
+            startActivity(new Intent(this, NoteActivity.class));
         });
 
         initializeDisplayContent();
@@ -45,7 +43,7 @@ public class NoteListActivity extends AppCompatActivity {
         listNotes.setAdapter(adapterNotes);
 
         listNotes.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(NoteListActivity.this, NoteActivity.class);
+            Intent intent = new Intent(this, NoteActivity.class);
             NoteInfo note = (NoteInfo) listNotes.getItemAtPosition(position);
             intent.putExtra(NoteActivity.NOTE_INFO, note);
             startActivity(intent);
