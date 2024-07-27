@@ -1,6 +1,8 @@
 package com.mohsinayub.notekeeper;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -8,6 +10,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
 
@@ -25,5 +29,16 @@ public class NoteListActivity extends AppCompatActivity {
                 .setAnchorView(R.id.fab)
                 .setAction("Action", null).show();
         });
+
+        initializeDisplayContent();
+    }
+
+    private void initializeDisplayContent() {
+        ListView listNotes = findViewById(R.id.list_notes);
+
+        List<NoteInfo> notes = DataManager.getInstance().getNotes();
+        ArrayAdapter<NoteInfo> adapterNotes =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
+        listNotes.setAdapter(adapterNotes);
     }
 }
