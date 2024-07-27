@@ -1,6 +1,9 @@
 package com.mohsinayub.notekeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -40,5 +43,13 @@ public class NoteListActivity extends AppCompatActivity {
         ArrayAdapter<NoteInfo> adapterNotes =
                 new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
         listNotes.setAdapter(adapterNotes);
+
+        listNotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(NoteListActivity.this, NoteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
