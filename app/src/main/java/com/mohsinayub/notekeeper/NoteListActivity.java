@@ -2,13 +2,9 @@ package com.mohsinayub.notekeeper;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,19 +23,18 @@ public class NoteListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            startActivity(new Intent(this, NoteActivity.class));
-        });
+        fab.setOnClickListener(
+                view -> startActivity(new Intent(this, NoteActivity.class))
+        );
 
         initializeDisplayContent();
     }
 
     private void initializeDisplayContent() {
-        final ListView listNotes = findViewById(R.id.list_notes);
+        ListView listNotes = findViewById(R.id.list_notes);
 
         List<NoteInfo> notes = DataManager.getInstance().getNotes();
-        ArrayAdapter<NoteInfo> adapterNotes =
-                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notes);
+        NotesListAdapter adapterNotes = new NotesListAdapter(this, notes);
         listNotes.setAdapter(adapterNotes);
 
         listNotes.setOnItemClickListener((parent, view, position, id) -> {
